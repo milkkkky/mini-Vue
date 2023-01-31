@@ -1,0 +1,14 @@
+{
+  "name": "mini-Vue",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:milkkkky/mini-Vue.git",
+  "author": "sunhongyu <sunhongyu@ictnj.ac.cn>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.4.0"
+  },
+  "dependencies": {
+    "typescript": "^4.9.5"
+  }
+}
