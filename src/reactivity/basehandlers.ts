@@ -16,7 +16,7 @@ function createGetter(isReadonly = false) {
 
     //res是不是object
     if (isObject(res)) {
-      return isReadonly ? readonly(res) : reactive(target);
+      return isReadonly ? readonly(res) : reactive(res);
     }
 
     if (!isReadonly) {
