@@ -26,7 +26,7 @@ describe("computed", () => {
     const cValue = computed(getter);
     //lazy
     expect(getter).not.toHaveBeenCalled();
-    
+
     expect(cValue.value).toBe(1);
     expect(getter).toHaveBeenCalledTimes(1);
 
@@ -35,15 +35,15 @@ describe("computed", () => {
     expect(getter).toHaveBeenCalledTimes(1);
 
     // //should not compute until needed
-    value.foo = 2; //trigger -> effect
+    value.foo = 2; //trigger -> effect -> 重新执行
     expect(getter).toHaveBeenCalledTimes(1);
 
     // //now it should compute
-    // expect(cValue.value).toBe(2);
-    // expect(getter).toHaveBeenCalledTimes(2);
+    expect(cValue.value).toBe(2);
+    expect(getter).toHaveBeenCalledTimes(2);
 
     // //should not compute again
-    // cValue.value;
-    // expect(getter).toHaveBeenCalledTimes(2);
+    cValue.value;
+    expect(getter).toHaveBeenCalledTimes(2);
   });
 });

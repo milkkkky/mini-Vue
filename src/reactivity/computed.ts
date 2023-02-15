@@ -23,7 +23,7 @@ class ComputedRefImpl {
       this._dirty = false;
       this._value = this._effect.run();
     }
-    return this._getter();
+    return this._value;
   }
 }
 export function computed(getter) {
