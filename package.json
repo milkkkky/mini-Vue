@@ -1,7 +1,8 @@
 {
   "name": "mini-Vue",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/mini-vue.cjs.js",
+  "module": "lib/mini-vue.esm.js",
   "type": "module",
   "repository": "git@github.com:milkkkky/mini-Vue.git",
   "author": "sunhongyu <sunhongyu@ictnj.ac.cn>",
