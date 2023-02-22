@@ -24,24 +24,29 @@ function patch(vnode, container) {
 function processComponent(vnode: any, container: any) {
   mountComponent(vnode, container);
 }
-function mountComponent(vnode: any, container) {
-  const instance = createComponentInstance(vnode);
+function mountComponent(initialvnode: any, container) {
+  const instance = createComponentInstance(initialvnode);
   setupComponent(instance);
-  setupRenderEffect(instance, container);
+  setupRenderEffect(instance, initialvnode, container);
 }
-function setupRenderEffect(instance: any, container) {
-  const subTree = instance.render();
+function setupRenderEffect(initialvnode: any, vnode, container) {
+  const { proxy } = initialvnode;
+  const subTree = initialvnode.render.call(proxy);
 
   //vnode
   //vnode -> element ->mountElement
   patch(subTree, container);
+
+  //element -> mount
+  vnode.el = subTree.el;
 }
 function processElement(vnode: any, container: any) {
   mountElement(vnode, container);
 }
 
 function mountElement(vnode: any, container: any) {
-  const el = document.createElement(vnode.type);
+  // vnode -> element -> div
+  const el = (vnode.el = document.createElement(vnode.type));
   const { children } = vnode;
 
   if (typeof children === "string") {
