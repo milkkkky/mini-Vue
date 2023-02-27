@@ -1,3 +1,4 @@
+import { isObject } from "../shared/index";
 import {
   mutableHandlers,
   readonlyHandlers,
@@ -17,13 +18,17 @@ export function reactive(raw) {
 }
 
 export function readonly(raw) {
-  return createActiveObject(raw, readonlyHandlers);
+  return createReactiveObject(raw, readonlyHandlers);
 }
 export function shallowReadonly(raw) {
-  return createActiveObject(raw, shallowReadonlyHanlders);
+  return createReactiveObject(raw, shallowReadonlyHanlders);
 }
-function createActiveObject(raw: any, basehandlers) {
-  return new Proxy(raw, basehandlers);
+function createReactiveObject(target, basehandlers) {
+  if (!isObject(target)) {
+    console.warn(`target ${target} 必须是一个对象`);
+    return target;
+  }
+  return new Proxy(target, basehandlers);
 }
 export function isReadonly(value) {
   return !!value[ReactiveFlags.IS_READONLY];
